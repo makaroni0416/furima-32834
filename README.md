@@ -1,24 +1,61 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                     | Type   | Options     |
+| -------------------------  | -----  | ---------   |
+| name                       | string | null: false |
+| password                   | string | null: false |
+| birthday                   | string | null: false |
+| family_name                | text   | null: false |
+| first_name                 | text   | null: false |
+| family_name_kana           | text   | null: false |
+| first_name_kana            | text   | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
+- has_many :purches_records
+- has_many :displays
 
-* Configuration
+## purches_records テーブル
 
-* Database creation
+| Column       | Type         | Options                       |
+| ----------   | -----------  | ---------------------------   |
+| user         | references   | null: false, foreign_key:true |
+| display      | references   | null: false, foreign_key:true |                 |
 
-* Database initialization
+### Association
+- has_one :address
+- belongs_to :user
+- belongs_to :displays
 
-* How to run the test suite
+## displays テーブル
+| Column         | Type         | Options     |
+| ------------   | -----------  | ----------- |
+| product        | string       | null: false |
+| product_text   | text         | null: false |
+| category       | string       | null: false |
+| product_status | string       | null: false |
+| delivery_price | string       | null: false |
+| prefecture_id  | string       | null: false |
+| shipping_date  | string       | null: false |
+| price          | string       | null: false |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- has_one :purches_recods
 
-* Deployment instructions
+## addressテーブル
+| Column          | Type         | Options       |
+| ------------    | -----------  | -----------   |
+| postcode        | string       | null: false |
+| prefecture_id   | text         | null: false |
+| city            | string       | null: false |
+| block           | string       | null: false |
+| building        | string       | null: false |
+| phone_number    | string       | null: false |
 
-* ...
+### Association
+- belongs_to :purches_records
+
+
