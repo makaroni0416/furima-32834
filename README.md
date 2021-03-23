@@ -28,7 +28,7 @@
 ### Association
 - has_one :address
 - belongs_to :user
-- belongs_to :displays
+- belongs_to :display
 
 ## displays テーブル
 | Column            | Type         | Options     |
@@ -44,19 +44,21 @@
 
 ### Association
 - belongs_to :user
-- has_one :purches_recods
+- has_one :purches_record
 
 ## addressテーブル
-| Column          | Type         | Options     |
-| ------------    | -----------  | ----------- |
-| postcode        | string       | null: false |
-| prefecture_id   | integer      | null: false |
-| city            | string       | null: false |
-| block           | string       | null: false |
-| building        | string       |             |
-| phone_number    | string       | null: false |
+| Column          | Type         | Options                       |
+| ------------    | -----------  | ----------------------------  |
+| postcode        | string       | null: false                   |
+| prefecture_id   | integer      | null: false                   |
+| city            | string       | null: false                   |
+| block           | string       | null: false                   |
+| building        | string       |                               |
+| phone_number    | string       | null: false                   |
+| user            | references   | null: false, foreign_key:true |
+| display         | references   | null: false, foreign_key:true |
 
 ### Association
-- belongs_to :purches_records
+- belongs_to :purches_record
 
 
