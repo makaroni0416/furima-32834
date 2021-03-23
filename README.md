@@ -31,16 +31,17 @@
 - belongs_to :display
 
 ## displays テーブル
-| Column            | Type         | Options     |
-| ---------------   | -----------  | ----------- |
-| product           | string       | null: false |
-| product_text      | text         | null: false |
-| category_id       | integer      | null: false |
-| product_status_id | integer      | null: false |
-| delivery_price_id | integer      | null: false |
-| prefecture_id     | integer      | null: false |
-| shipping_date_id  | integer      | null: false |
-| price             | integer      | null: false |
+| Column            | Type         | Options                       |
+| ---------------   | -----------  | ---------------------------   |
+| product           | string       | null: false                   |
+| product_text      | text         | null: false                   |
+| category_id       | integer      | null: false                   |
+| product_status_id | integer      | null: false                   |
+| delivery_price_id | integer      | null: false                   |
+| prefecture_id     | integer      | null: false                   |
+| shipping_date_id  | integer      | null: false                   |
+| price             | integer      | null: false                   |
+| user              | references   | null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
@@ -55,8 +56,7 @@
 | block           | string       | null: false                   |
 | building        | string       |                               |
 | phone_number    | string       | null: false                   |
-| user            | references   | null: false, foreign_key:true |
-| display         | references   | null: false, foreign_key:true |
+| purchase_record | references   | null: false, foreign_key:true |
 
 ### Association
 - belongs_to :purches_record
