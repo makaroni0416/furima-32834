@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     name                    {Faker::Name.name}
-    email                   {Faker::Internet.email}
+    email                   { '1a' + Faker::Internet.password(min_length: 4) }
     birthday                {'2020-02-02'}
     password                = Faker::Internet.password(min_length: 6)
     password                {password}
