@@ -5,13 +5,16 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
    context '新規登録がうまくいくとき' do
-
-      it 'パスワードが6文字以上であれば登録できる' do
-        @user.password ='aaa000'
-        @user.password_confirmation = 'aaa000'
-        @user.valid?
-        expect(@user).to be_valid 
-      end
+     it 'パスワードが6文字以上であれば登録できる' do
+      @user.password ='aaa000'
+      @user.password_confirmation = 'aaa000'
+      @user.valid?
+      expect(@user).to be_valid 
+     end
+     it '全てのカラムがあれば登録できること' do
+      @user.valid?
+      expect(@user).to be_valid 
+     end
     end
 
    context '新規登録がうまくいかないとき' do
