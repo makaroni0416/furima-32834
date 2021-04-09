@@ -9,11 +9,18 @@ class DisplaysController < ApplicationController
   end
 
   def create
-    Display.create(display_params)
+    @display = Display.new(display_params)
+
+    if @display.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
+  
   def display_params
-    params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id, :prefecture_id, :shipping_date_id, :price)
+    params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id, :prefecture_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
 end
