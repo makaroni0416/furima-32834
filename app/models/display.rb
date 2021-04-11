@@ -1,2 +1,12 @@
 class Display < ApplicationRecord
+  has_one_attached :image
+
+  validates :product,             presence: true
+  validates :product_text,        presence: true
+  validates :category_id,         presence: true
+  validates :product_status_id,   presence: true
+  validates :delivery_price_id,   presence: true
+  validates :prefecture_id,       presence: true
+  validates :shipping_date_id,    presence: true
+  validates :price,               presence: true
 end
