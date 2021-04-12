@@ -2,6 +2,7 @@ class DisplaysController < ApplicationController
  
   
   def index
+    @displays = Display.order("created_at DESC")
   end
 
   def new
