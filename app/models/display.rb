@@ -12,4 +12,9 @@ class Display < ApplicationRecord
   validates :shipping_date_id,    presence: true
   validates :price,               presence: true
 
+  def was_attached?
+    self.image.was_attached?
+  end
+
+
 end
