@@ -1,8 +1,8 @@
 class DisplaysController < ApplicationController
- 
+ before_action :authenticate_user!
   
   def index
-    @displays = Display.order("created_at DESC")
+    #@displays = Display.order("created_at DESC")
   end
 
   def new
@@ -12,7 +12,8 @@ class DisplaysController < ApplicationController
   def create
     @display = Display.new(display_params)
 
-    if @display.save
+    if @display.valid?
+       @display.save
       redirect_to root_path
     else
       render :new
