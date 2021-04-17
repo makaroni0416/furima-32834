@@ -97,6 +97,16 @@ RSpec.describe Display, type: :model do
         @display.valid?
         expect(@display.errors.full_messages).to include()
       end
+      it '価格が半角英数字混合では出品できない' do
+        @display.price = '300aa'
+        @display.valid?
+        expect(@display.errors.full_messages).to include()
+      end
+      it '価格が半角英語だけでは出品できない' do
+        @display.price = 'abcdef'
+        @display.valid?
+        expect(@display.errors.full_messages).to include()
+      end
     end
   end
 end

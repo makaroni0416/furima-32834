@@ -1,5 +1,5 @@
 class DisplaysController < ApplicationController
- before_action :authenticate_user!
+  before_action :authenticate_user!
   
   def index
     #@displays = Display.order("created_at DESC")
