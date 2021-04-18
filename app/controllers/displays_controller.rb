@@ -2,7 +2,8 @@ class DisplaysController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   
   def index
-    #@displays = Display.order("created_at DESC")
+    @display = Display.all.order("created_at DESC")
+
   end
 
   def new
