@@ -1,5 +1,7 @@
 class DisplaysController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
+  before_action :set_display, only: [:show, :edit, :update]
+  before_action :user_not_access, only: [:edit, :update]
   
   def index
     @display = Display.all.order("created_at DESC")
@@ -21,16 +23,12 @@ class DisplaysController < ApplicationController
   end
 
   def show
-    @display = Display.find(params[:id])
   end
 
   def edit
-    @display = Display.find(params[:id])
-    redirect_to root_path unless current_user.id == @display.user_id
   end
 
   def update
-    @display = Display.find(params[:id])
     if @display.update(display_params)
       redirect_to display_path
     else
@@ -46,5 +44,14 @@ class DisplaysController < ApplicationController
   def display_params
     params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id, :prefecture_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
+
+  def set_display
+    @display = Display.find(params[:id])
+  end
+
+  def user_not_access
+    redirect_to root_path unless current_user.id == @display.user_id
+  end
+
 
 end
