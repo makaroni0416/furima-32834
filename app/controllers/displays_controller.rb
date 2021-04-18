@@ -3,15 +3,11 @@ class DisplaysController < ApplicationController
   
   def index
     @display = Display.all.order("created_at DESC")
-
+     
   end
 
   def new
     @display = Display.new
-  end
-
-  def show
-    @display = Display.find(params[:id])
   end
 
   def create
@@ -25,9 +21,35 @@ class DisplaysController < ApplicationController
     end
   end
 
+  def show
+    @display = Display.find(params[:id])
+  end
+
+  def edit
+    @display = Display.find(params[:id])
+  end
+
+  def update
+    @display = Display.find(params[:id])
+    if @display.update(display_params)
+      redirect_to display_path
+    else
+      render :edit
+    end
+  end
+
+
+
   private
 
   def display_params
     params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id, :prefecture_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+  
 end
