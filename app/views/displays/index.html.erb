@@ -143,7 +143,7 @@
             <%= display.product %>
           </h3>
           <div class='item-price'>
-            <span><%= display.price %>円<br><%= '配送料負担' %></span>
+            <span><%= display.price %>円<br><%= display.delivery_price.price %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -151,8 +151,8 @@
           </div>
         </div>
         <% end %>
-        <% end %>
       </li>
+      <% end %>
 
       <% if @display.blank? %>
       <li class='list'>
@@ -171,8 +171,8 @@
           </div>
         </div>
         <% end %>
-        <% end %>
       </li>
+      <% end %>
    </ul>
   </div>
 </div>
