@@ -4,7 +4,7 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @display.product %>
     </h2>
     <div class="item-img-content">
       <%= image_tag @display.image, class:"item-box-img" %>
@@ -40,7 +40,7 @@
 
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @display.product_text %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -105,7 +105,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @display.category.category %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
