@@ -36,6 +36,12 @@ class DisplaysController < ApplicationController
     end
   end
 
+  def destroy
+    @display = Display.find(params[:id])
+    @display.destroy
+    redirect_to root_path
+  end
+
 
 
 
