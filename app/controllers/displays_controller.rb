@@ -1,5 +1,5 @@
 class DisplaysController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index,:show]
   
   def index
     @display = Display.all.order("created_at DESC")
@@ -8,6 +8,10 @@ class DisplaysController < ApplicationController
 
   def new
     @display = Display.new
+  end
+
+  def show
+    @display = Display.find(params[:id])
   end
 
   def create
