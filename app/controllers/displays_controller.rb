@@ -1,7 +1,7 @@
 class DisplaysController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :set_display, only: [:show, :edit, :update]
-  before_action :user_not_access, only: [:edit, :update]
+  before_action :set_display, only: [:show, :edit, :update, :destroy]
+  before_action :user_not_access, only: [:edit, :update, :destroy]
   
   def index
     @display = Display.all.order("created_at DESC")
@@ -34,6 +34,11 @@ class DisplaysController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @display.destroy
+    redirect_to root_path
   end
 
 
