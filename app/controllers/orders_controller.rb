@@ -9,7 +9,9 @@ class OrdersController < ApplicationController
 
   def create
   @address = Address.new(order_params)
-   if @address.save
+
+   if @address.valid? 
+    @address.save
     redirect_to action: :index
    else
     render action: :new

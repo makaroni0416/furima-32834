@@ -1,7 +1,6 @@
 class Address < ApplicationRecord
   class Address < ApplicationRecord
     belongs_to :purches_record
-    belongs_to :prefecture
   
     with_options presence: true do
   
