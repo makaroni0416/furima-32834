@@ -1,0 +1,2 @@
+module PurchesRecordsHelper
+end

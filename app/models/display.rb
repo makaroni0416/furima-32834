@@ -7,6 +7,7 @@ class Display < ApplicationRecord
   belongs_to :shipping_date
   belongs_to :user
   has_one_attached :image
+  has_one  :purches_record
 
   with_options presence: true do
   validates :product             
