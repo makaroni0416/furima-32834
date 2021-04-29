@@ -13,7 +13,6 @@ class DisplaysController < ApplicationController
 
   def create
     @display = Display.new(display_params)
-
     if @display.valid?
        @display.save
       redirect_to root_path
