@@ -11,7 +11,9 @@ class Order < ApplicationRecord
 
   with_options presence: true do
     validates       :block
-    validates :token
+    validates       :token
+    validates       :user_id
+    validates       :display_id
   end
 
   def save

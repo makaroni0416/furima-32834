@@ -61,5 +61,20 @@ RSpec.describe Order, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include('Phone number 半角数字のみ入力してください')
     end
+    it '電話番号は英数混合だと登録できないこと' do
+      @order.phone_number = 'abc12345678'
+      @order.valid?
+      expect(@order.errors.full_messages).to include('Phone number 半角数字のみ入力してください')
+    end
+    it 'user_idがあると登録できないこと' do
+      @order.user_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("User can't be blank")
+    end
+    it 'display_idがあると登録できないこと' do
+      @order.display_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Display can't be blank")
+    end
   end
 end
