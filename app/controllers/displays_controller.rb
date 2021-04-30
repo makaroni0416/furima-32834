@@ -25,6 +25,9 @@ class DisplaysController < ApplicationController
   end
 
   def edit
+    if @display.purches_record.present?
+      render root_path
+    end
   end
 
   def update
