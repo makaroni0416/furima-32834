@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   
   def index
     @order = Order.new
+    @display = Display.find params[:display_id]
   end
 
   def new
@@ -12,6 +13,7 @@ class OrdersController < ApplicationController
     @display_price = Display.find params[:display_id]
     @order = Order.new(order_params)
     if @order.valid?
+    @order.save
       pay_item
       redirect_to root_path
     else

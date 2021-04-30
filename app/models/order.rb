@@ -16,8 +16,8 @@ class Order < ApplicationRecord
   end
 
   def save
-    Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city,block: block, building: building, phone_number: phone_number,)
-    Purches_record.create(display_id: display_id, user_id: user_id)
+    purches_record = PurchesRecord.create(display_id: display_id, user_id: user_id)
+    Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city,block: block, building: building, phone_number: phone_number, purches_record_id: purches_record.id)
   end
 
 end
