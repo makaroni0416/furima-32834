@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "PurchesRecords", type: :request do
-
+RSpec.describe 'PurchesRecords', type: :request do
 end
