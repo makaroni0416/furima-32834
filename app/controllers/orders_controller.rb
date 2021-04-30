@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
-  
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @order = Order.new
     @display = Display.find params[:display_id]
+    if current_user == @display.user
+      redirect_to root_path
+    end
   end
 
   def new
@@ -35,4 +39,6 @@ class OrdersController < ApplicationController
         currency: 'jpy'       
       )
   end
+
+
 end
