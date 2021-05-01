@@ -1,10 +1,10 @@
 class DisplaysController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_display, only: [:show, :edit, :update, :destroy]
   before_action :user_not_access, only: [:edit, :update, :destroy]
-  
+
   def index
-    @display = Display.all.order("created_at DESC")
+    @display = Display.all.order('created_at DESC')
   end
 
   def new
@@ -13,9 +13,8 @@ class DisplaysController < ApplicationController
 
   def create
     @display = Display.new(display_params)
-
     if @display.valid?
-       @display.save
+      @display.save
       redirect_to root_path
     else
       render :new
@@ -41,13 +40,11 @@ class DisplaysController < ApplicationController
     redirect_to root_path
   end
 
-
-
-
   private
 
   def display_params
-    params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id, :prefecture_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:display).permit(:product, :product_text, :category_id, :product_status_id, :delivery_price_id,
+                                    :prefecture_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
 
   def set_display
@@ -55,8 +52,6 @@ class DisplaysController < ApplicationController
   end
 
   def user_not_access
-    redirect_to root_path unless current_user.id == @display.user_id
+    redirect_to root_path if current_user.id != @display.user_id || @display.purches_record.present?
   end
-
-
 end
