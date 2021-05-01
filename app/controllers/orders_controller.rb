@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   def another_user
     if current_user == @display.user || @display.purches_record.present?
       redirect_to root_path 
+    end
   end
 
 
