@@ -52,6 +52,6 @@ class DisplaysController < ApplicationController
   end
 
   def user_not_access
-    redirect_to root_path unless current_user.id == @display.user_id || @display.purches_record.present?
+    redirect_to root_path if current_user.id != @display.user_id || @display.purches_record.present?
   end
 end

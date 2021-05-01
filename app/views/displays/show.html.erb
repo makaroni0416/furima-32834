@@ -25,15 +25,14 @@
 
 
 
-    <% if user_signed_in? && @display.purches_record.present? %>
-    <% else %>
-     <% if current_user.id == @display.user.id %>
-    <%= link_to "商品の編集", edit_display_path, method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", display_path(@display.id), method: :delete, class:"item-destroy" %>
-    <% elsif %>    
-    <%= link_to "購入画面に進む", display_orders_path(@display.id) ,class:"item-red-btn"%>
-     <% end %>
+    <% if user_signed_in? && @display.purches_record.blank? %>
+       <% if current_user.id == @display.user.id %>
+         <%= link_to "商品の編集", edit_display_path, method: :get, class: "item-red-btn" %>
+         <p class="or-text">or</p>
+         <%= link_to "削除", display_path(@display.id), method: :delete, class:"item-destroy" %>
+    <% else %>    
+         <%= link_to "購入画面に進む", display_orders_path(@display.id) ,class:"item-red-btn"%>
+       <% end %>
     <% end %>
 
 
