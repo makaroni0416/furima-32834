@@ -1,12 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :display_params, only: [:index, :create]
+  before_action :another_user, only: [:index, :create]
 
   def index
     @order = Order.new
-    if current_user == @display.user
-      redirect_to root_path 
-    end
   end
 
   def create
@@ -31,7 +29,7 @@ class OrdersController < ApplicationController
   def display_params
     @display = Display.find params[:display_id]
   end
-  
+
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
@@ -40,5 +38,11 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def another_user
+    if current_user == @display.user
+      redirect_to root_path 
+  end
+
 
 end
