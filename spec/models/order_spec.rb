@@ -72,7 +72,7 @@ RSpec.describe Order, type: :model do
     it '電話番号は11桁以上だと登録できないこと' do
       @order.phone_number = '123456789012'
       @order.valid?
-      expect(@order.errors.full_messages).to include
+      expect(@order.errors.full_messages).to include('Phone number 半角数字のみ入力してください')
     end
     it 'user_idがあると登録できないこと' do
       @order.user_id = nil
